@@ -35,6 +35,8 @@ public class ConfigReader {
 	public static void parse(String path) {
 		JSONParser parser = new JSONParser();
 		try {
+			Builder builder = new Builder();
+
 			Object object = parser.parse(new FileReader(path));
 
 			// convert Object to JSONObject
@@ -84,7 +86,7 @@ public class ConfigReader {
 
 				Double mass = (Double) jsonBall.get("mass");
 
-				balls.add(new Ball(positionX, positionY, velocityX, velocityY, mass, colour));
+				balls.add(builder.build(positionX, positionY, velocityX, velocityY, mass, colour));
 			}
 
 		} catch (FileNotFoundException e) {
